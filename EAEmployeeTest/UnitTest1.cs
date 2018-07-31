@@ -54,9 +54,7 @@ namespace EAEmployeeTest
             //Employee Page
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
             CurrentPage.As<EmployeePage>().clickCreateNew();
-            
-
-            
+                        
             //LoginPage page = new LoginPage();
 
             //page.ClickLoginLink();
