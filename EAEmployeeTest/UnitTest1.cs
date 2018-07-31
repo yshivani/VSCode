@@ -44,14 +44,17 @@ namespace EAEmployeeTest
         {
 
             //DriverContext.Driver.Navigate().GoToUrl(url);
+            LogHelpers.CreateLogFile();
 
             string fileName = Environment.CurrentDirectory.ToString() + "\\Data\\Login.xlsx";
 
             ExcelHelpers.PopulateInCollection(fileName);
-
             
             OpenBrowser(BrowserType.Firefox);
+            LogHelpers.Write("Opened the Browser !!!!");
+
             DriverContext.Browser.GotoUrl(url);
+            LogHelpers.Write("Navigated to the Page !!!");
 
             //Login Page
             CurrentPage = GetInstance<LoginPage>();
