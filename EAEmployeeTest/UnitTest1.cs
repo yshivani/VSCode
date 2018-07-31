@@ -6,6 +6,7 @@ using EAEmployeeTest.Pages;
 using EAAutoFramework.Base;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Chrome;
+using EAAutoFramework.Helpers;
 
 namespace EAEmployeeTest
 {
@@ -44,13 +45,18 @@ namespace EAEmployeeTest
 
             //DriverContext.Driver.Navigate().GoToUrl(url);
 
+            string fileName = Environment.CurrentDirectory.ToString() + "\\Data\\Login.xlsx";
+
+            ExcelHelpers.PopulateInCollection(fileName);
+
+            
             OpenBrowser(BrowserType.Firefox);
             DriverContext.Browser.GotoUrl(url);
 
             //Login Page
             CurrentPage = GetInstance<LoginPage>();
             CurrentPage.As<LoginPage>().ClickLoginLink();
-            CurrentPage.As<LoginPage>().Login("admin", "password");
+            CurrentPage.As<LoginPage>().Login(ExcelHelpers.ReadData(1,"Username"), ExcelHelpers.ReadData(1,"Password"));
             //Employee Page
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
             CurrentPage.As<EmployeePage>().clickCreateNew();
