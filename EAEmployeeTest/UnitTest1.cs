@@ -73,6 +73,35 @@ namespace EAEmployeeTest
             //((EmployeePage)CurrentPage).clickCreateNew();
         }
 
+        [TestMethod]
+        public void TableOperation()
+        {
+            LogHelpers.CreateLogFile();
+
+            string fileName = Environment.CurrentDirectory.ToString() + "\\Data\\Login.xlsx";
+
+            ExcelHelpers.PopulateInCollection(fileName);
+
+            OpenBrowser(BrowserType.Firefox);
+            LogHelpers.Write("Opened the Browser !!!!");
+
+            DriverContext.Browser.GotoUrl(url);
+            LogHelpers.Write("Navigated to the Page !!!");
+
+            //Login Page
+            CurrentPage = GetInstance<LoginPage>();
+            CurrentPage.As<LoginPage>().ClickLoginLink();
+            CurrentPage.As<LoginPage>().Login(ExcelHelpers.ReadData(1, "Username"), ExcelHelpers.ReadData(1, "Password"));
+            //Employee Page
+            CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
+
+            var table = CurrentPage.As<EmployeePage>().GetEmployeeList();
+
+            HtmlTableHelper.ReadTable(table);
+            HtmlTableHelper.PerformActionOnCell("5", "Name", "Ramesh", "Benefits");
+            
+        }
+
         //public void Login()
         //{
 
