@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EAAutoFramework.Config
 {
-    class ConfigReader
+    public class ConfigReader
     {
     }
 }
