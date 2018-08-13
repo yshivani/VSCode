@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <EAAutoFramework>
   <RunSettings>
-    <AUT>http://localhost/EmployeeApp</AUT>
+    <AUT>http://localhost</AUT>
     <!-- Possible flag Chrome,Firefox, IE-->
     <Browser>Firefox</Browser>
     <!-- Possible flag Smoke, Regression, Unit -->

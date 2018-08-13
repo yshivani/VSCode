@@ -1,11 +1,8 @@
 ﻿using EAAutoFramework.Base;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using EAAutoFramework.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EAEmployeeTest.Pages
 {
@@ -41,11 +38,16 @@ namespace EAEmployeeTest.Pages
 
         }
 
+
         public EmployeePage ClickEmployeeList()
         {
             lnkEmploeeList.Click();
             return GetInstance<EmployeePage>();
         }
 
+        internal void CheckIfLoginExists()
+        {
+            txtUsername.AssertElementPresent();
+        }
     }
 }

@@ -15,8 +15,6 @@ namespace EAEmployeeTest
     public class UnitTest1:Base
     {
 
-        string url = ConfigReader.InitializeTest();
-
         public void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
         {
             switch (browserType)
@@ -44,6 +42,7 @@ namespace EAEmployeeTest
         public void TestMethod1()
         {
 
+            ConfigReader.SetFrameworkSettings();
             //DriverContext.Driver.Navigate().GoToUrl(url);
             LogHelpers.CreateLogFile();
 
@@ -54,12 +53,13 @@ namespace EAEmployeeTest
             OpenBrowser(BrowserType.Firefox);
             LogHelpers.Write("Opened the Browser !!!!");
 
-            DriverContext.Browser.GotoUrl(url);
+            DriverContext.Browser.GotoUrl(Settings.AUT);
             LogHelpers.Write("Navigated to the Page !!!");
 
             //Login Page
             CurrentPage = GetInstance<LoginPage>();
             CurrentPage.As<LoginPage>().ClickLoginLink();
+            CurrentPage.As<LoginPage>().CheckIfLoginExists();
             CurrentPage.As<LoginPage>().Login(ExcelHelpers.ReadData(1,"Username"), ExcelHelpers.ReadData(1,"Password"));
             //Employee Page
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
@@ -86,7 +86,7 @@ namespace EAEmployeeTest
             OpenBrowser(BrowserType.Firefox);
             LogHelpers.Write("Opened the Browser !!!!");
 
-            DriverContext.Browser.GotoUrl(url);
+            DriverContext.Browser.GotoUrl(Settings.AUT);
             LogHelpers.Write("Navigated to the Page !!!");
 
             //Login Page
