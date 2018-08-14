@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EAAutoFramework.Config;
+using System;
 using System.IO;
 
 
@@ -13,7 +14,7 @@ namespace EAAutoFramework.Helpers
         //Create a file which can store the log information
         public static void CreateLogFile()
         {
-            string dir = @"c:\Shivani\VS\";
+            string dir = Settings.LogPath;// @"c:\Shivani\VS\";
             if(Directory.Exists(dir))
             {
                 _streamw = File.AppendText(dir + _logFileName + ".log");

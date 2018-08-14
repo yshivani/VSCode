@@ -12,49 +12,26 @@ using EAAutoFramework.Config;
 namespace EAEmployeeTest
 {
     [TestClass]
-    public class UnitTest1:Base
+    public class UnitTest1 : HookInitialize
     {
-
-        public void OpenBrowser(BrowserType browserType = BrowserType.Firefox)
-        {
-            switch (browserType)
-            {
-                case BrowserType.InterExplorer:
-                    DriverContext.Driver = new InternetExplorerDriver();
-                    DriverContext.Browser = new Browser(DriverContext.Driver);
-                    break;
-                case BrowserType.Firefox:
-                    FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(@"C:\Shivani\VS\EAAutoFramework\EAEmployeeTest");
-                    service.FirefoxBinaryPath = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
-                    DriverContext.Driver = new FirefoxDriver(service);
-                    DriverContext.Browser = new Browser(DriverContext.Driver);
-                    break;
-                case BrowserType.Chrome:
-                    DriverContext.Driver = new ChromeDriver();
-                    DriverContext.Browser = new Browser(DriverContext.Driver);
-                    break;
-                default:
-                    break;
-            }
-        }
 
         [TestMethod]
         public void TestMethod1()
         {
 
-            ConfigReader.SetFrameworkSettings();
+            //ConfigReader.SetFrameworkSettings();
             //DriverContext.Driver.Navigate().GoToUrl(url);
-            LogHelpers.CreateLogFile();
+            //LogHelpers.CreateLogFile();
 
             string fileName = Environment.CurrentDirectory.ToString() + "\\Data\\Login.xlsx";
 
             ExcelHelpers.PopulateInCollection(fileName);
             
-            OpenBrowser(BrowserType.Firefox);
-            LogHelpers.Write("Opened the Browser !!!!");
+            //OpenBrowser(BrowserType.Firefox);
+            //LogHelpers.Write("Opened the Browser !!!!");
 
-            DriverContext.Browser.GotoUrl(Settings.AUT);
-            LogHelpers.Write("Navigated to the Page !!!");
+            //DriverContext.Browser.GotoUrl(Settings.AUT);
+            //LogHelpers.Write("Navigated to the Page !!!");
 
             //Login Page
             CurrentPage = GetInstance<LoginPage>();
@@ -83,7 +60,7 @@ namespace EAEmployeeTest
 
             ExcelHelpers.PopulateInCollection(fileName);
 
-            OpenBrowser(BrowserType.Firefox);
+            //OpenBrowser(BrowserType.Firefox);
             LogHelpers.Write("Opened the Browser !!!!");
 
             DriverContext.Browser.GotoUrl(Settings.AUT);
