@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using EAAutoFramework.Base;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -27,7 +29,8 @@ namespace EAAutoFramework.Extensions
 
         public static void Hover(this IWebElement element)
         {
-            Actions actions = new Actions(DriverCOntext);
+            Actions actions = new Actions(DriverContext.Driver);
+            actions.MoveToElement(element).Perform();
         }
 
         public static void AssertElementPresent(this IWebElement element)
